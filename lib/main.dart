@@ -1,4 +1,5 @@
 import 'package:customerapp/views/pages/HomeScreen/HomeScreen.dart';
+import 'package:customerapp/views/pages/Rider/calling_screen/rider_calling_screen.dart';
 import 'package:customerapp/views/pages/Rider/r_HomeScreen/r_orders.dart';
 import 'package:customerapp/views/pages/firstScreen/splash_screen.dart';
 
@@ -19,7 +20,7 @@ void main() async {
         ? FirstScreen()
         : pref.getString("userType") == "Customer"
             ? HomeScreen()
-            : ROrderPage(),
+            : Rider_calling_screen(),
     debugShowCheckedModeBanner: false,
   ));
 }

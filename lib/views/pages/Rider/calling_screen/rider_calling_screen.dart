@@ -1,6 +1,8 @@
 import 'package:customerapp/views/pages/Rider/r_HomeScreen/r_orders.dart';
 import 'package:customerapp/views/pages/Rider/r_accountSetting/r_accountSetting.dart';
 import 'package:customerapp/views/pages/Rider/r_earning/r_earning.dart';
+import 'package:customerapp/views/pages/Rider/rider_earning/rr_earning.dart';
+import 'package:customerapp/views/pages/Rider/rider_order/rr_orders.dart';
 import 'package:customerapp/views/pages/chatScreens/chat_main_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -14,8 +16,9 @@ class Rider_calling_screen extends StatefulWidget {
 class _Rider_calling_screenState extends State<Rider_calling_screen> {
   int currentIndex = 1;
   final screens = [
-    REarning(),
-    ROrderPage(),
+    RR_Earning(),
+    RROrderPage(),
+    // ROrderPage(),
     ChatMainScreen(),
     RAccountSetting()
   ];
