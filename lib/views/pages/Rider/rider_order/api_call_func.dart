@@ -91,7 +91,7 @@ List<OrderHistoryApi> get_order_history_all() {
 
 Future<List<OrderHistoryApi>> get_order_history_api() async {
   final response = await http.get(Uri.parse(
-      "https://persecuted-admissio.000webhostapp.com/restaurant/restaurant_api/orders.php"));
+      "https://persecuted-admissio.000webhostapp.com/restaurant/rider_api/orders.php"));
   var data = jsonDecode(response.body.toString());
   if (response.statusCode == 200) {
     order_active_main_list.clear();

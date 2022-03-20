@@ -19,7 +19,7 @@ class _RR_EarningState extends State<RR_Earning> {
   var data;
   Future<void> get_E_Api() async {
     final response = await http.get(Uri.parse(
-        "https://persecuted-admissio.000webhostapp.com/restaurant/restaurant_api/earning.php"));
+        "https://persecuted-admissio.000webhostapp.com/restaurant/rider_api/earning.php"));
 
     if (response.statusCode == 200) {
       data = jsonDecode(response.body.toString());

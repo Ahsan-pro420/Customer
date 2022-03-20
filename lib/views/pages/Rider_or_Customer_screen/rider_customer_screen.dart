@@ -1,73 +1,67 @@
 import 'package:customerapp/Theme/Theme.dart';
 import 'package:customerapp/utills/Displaywidth.dart';
 import 'package:customerapp/utills/customtextbutton.dart';
-import 'package:customerapp/views/pages/Rider/calling_screen/rider_calling_screen.dart';
-import 'package:customerapp/views/pages/Rider/r_firstScreen/r_splash_screen.dart';
-import 'package:customerapp/views/pages/firstScreen/splash_screen.dart';
-
+import 'package:customerapp/views/pages/Rider/r_signin/r_sign_in_page.dart';
+import 'package:customerapp/views/pages/signin/sign_in_page.dart';
+import 'package:customerapp/views/widgets/wavy_first_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+class Rider_or_Customer extends StatelessWidget {
+  const Rider_or_Customer({Key? key}) : super(key: key);
 
-  @override
-  _MainScreenState createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: Center(
+      body: Container(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            WavyHeaderImage(),
+            SizedBox(
+              height: displayHeight(context) * 0.15,
+            ),
             Container(
-              margin: EdgeInsets.only(left: 35, right: 35),
               child: CustomTextButton(
-                buttonName: 'As a Customer',
+                buttonName: 'Customer',
                 buttonTextStyle:
                     GoogleFonts.ubuntu(textStyle: Constants.loginbuttonstyle()),
                 buttoncolor: Constants.black_light,
-                height: _height * 0.066,
+                height: _height * 0.07,
                 width: displayWidth(context) * 0.9,
                 highlightColor: Constants.black_light,
                 onPressed: () {
+                  // Navigator.pop(context);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => FirstScreen()),
+                    MaterialPageRoute(builder: (context) => SignIn()),
                   );
                 },
                 textStyle: TextStyle(),
               ),
             ),
             SizedBox(
-              height: 50,
+              height: displayHeight(context) * 0.05,
             ),
             Container(
-              margin: EdgeInsets.only(left: 35, right: 35),
               child: CustomTextButton(
-                buttonName: 'As a Rider',
+                buttonName: 'Rider',
                 buttonTextStyle:
                     GoogleFonts.ubuntu(textStyle: Constants.loginbuttonstyle()),
                 buttoncolor: Constants.black_light,
-                height: _height * 0.066,
+                height: _height * 0.07,
                 width: displayWidth(context) * 0.9,
                 highlightColor: Constants.black_light,
                 onPressed: () {
+                  // Navigator.pop(context);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => Rider_calling_screen()),
+                    MaterialPageRoute(builder: (context) => R_SignIn()),
                   );
                 },
                 textStyle: TextStyle(),
               ),
-            ),
+            )
           ],
         ),
       ),

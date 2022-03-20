@@ -34,10 +34,12 @@ dependencies:
   flutter_balloon_slider: ^0.1.1
   carousel_slider: ^4.0.0
   shared_preferences: ^2.0.13 
+  
   firebase_core: ^1.13.1
   # firebase_messaging:
   # firebase_database:
-  firebase_auth: ^3.3.9
+  
+  firebase_auth: ^3.3.11
   pinput: ^2.0.2
   pin_code_fields: ^7.3.0
   # dio:
@@ -48,7 +50,7 @@ dependencies:
   flutter_native_timezone: ^2.0.0
   http: ^0.13.4
   convert:
-  image_picker:
+  image_picker: ^0.8.4+11
   provider:
   
 dev_dependencies:
@@ -110,6 +112,7 @@ flutter:
     - assets/failure2.png
     - assets/failure3.png
     - assets/failure4.png
+    - assets/
     # - assets/images/rider_logo.png
   # To add assets to your application, add an assets section, like this:
     - assets/r_assets/images/Filter.png

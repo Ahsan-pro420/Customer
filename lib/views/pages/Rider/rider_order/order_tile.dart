@@ -66,7 +66,8 @@ Widget orderr(context, id, price, SubName, Address, quantity, date,
     margin: EdgeInsets.only(
         left: displayWidth(context) * 0.07,
         right: displayWidth(context) * 0.07,
-        top: 20),
+        top: 0,
+        bottom: 20),
     decoration: Constants.containerstyle(),
     // color: Color.fromRGBO(255, 255, 255, 1),
     child: Column(

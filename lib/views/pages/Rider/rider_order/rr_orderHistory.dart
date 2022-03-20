@@ -165,7 +165,7 @@ class _RROrdersHistoryState extends State<RROrdersHistory> {
                               return Container(
                                 child: ListView.builder(
                                     shrinkWrap: true,
-                                    physics: NeverScrollableScrollPhysics(),
+                                    // physics: NeverScrollableScrollPhysics(),
                                     itemCount: order_history_list.length,
                                     itemBuilder: (context, index) {
                                       return Order_history_tile_class(

@@ -1,3 +1,4 @@
+import 'package:customerapp/views/pages/Rider_or_Customer_screen/rider_customer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:customerapp/Theme/Theme.dart';
@@ -38,7 +39,8 @@ class _FirstScreenState extends State<FirstScreen> {
                   Navigator.pop(context);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SignIn()),
+                    MaterialPageRoute(
+                        builder: (context) => Rider_or_Customer()),
                   );
                 },
                 textStyle: TextStyle(),

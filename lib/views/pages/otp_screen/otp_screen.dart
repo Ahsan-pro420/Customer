@@ -465,8 +465,8 @@ class _OTPSCREENState extends State<OTPSCREEN> {
 
   final FocusNode _pinPutFocusNode = FocusNode();
   // FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
-  String? _firebaseToken;
-  String? _currentTimeZone;
+  // String? _firebaseToken;
+  // String? _currentTimeZone;
 
   String pinf = "";
 
@@ -680,112 +680,6 @@ class _OTPSCREENState extends State<OTPSCREEN> {
                     child: Column(
                       children: [
 //pin off
-
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        //   children: [
-                        //     Container(
-                        //       width: displayWidth(context) * 0.12,
-                        //       child: TextField(
-                        //         controller: _pin1Controller,
-                        //         onChanged: (value) {
-                        //           pin1 = value;
-                        //         },
-                        //         maxLength: 1,
-                        //         maxLengthEnforced: true,
-                        //         decoration: InputDecoration(
-                        //             border: UnderlineInputBorder(),
-                        //             hintText: "*",
-                        //             hintTextDirection: TextDirection.ltr,
-                        //             counterText: ''),
-                        //         textAlign: TextAlign.center,
-                        //       ),
-                        //     ),
-                        //     // SizedBox(width: 10,),
-                        //     Container(
-                        //       width: displayWidth(context) * 0.12,
-                        //       child: TextFormField(
-                        //         controller: _pin2Controller,
-                        //         onChanged: (value) {
-                        //           pin2 = value;
-                        //         },
-                        //         maxLength: 1,
-                        //         decoration: InputDecoration(
-                        //             border: UnderlineInputBorder(),
-                        //             hintText: "*",
-                        //             hintTextDirection: TextDirection.ltr,
-                        //             counterText: ''),
-                        //         textAlign: TextAlign.center,
-                        //       ),
-                        //     ),
-                        //     // SizedBox(width: 10,),
-                        //     Container(
-                        //       width: displayWidth(context) * 0.12,
-                        //       child: TextFormField(
-                        //         controller: _pin3Controller,
-                        //         onChanged: (value) {
-                        //           pin3 = value;
-                        //         },
-                        //         maxLength: 1,
-                        //         decoration: InputDecoration(
-                        //             border: UnderlineInputBorder(),
-                        //             hintText: "*",
-                        //             hintTextDirection: TextDirection.ltr,
-                        //             counterText: ''),
-                        //         textAlign: TextAlign.center,
-                        //       ),
-                        //     ),
-                        //     // SizedBox(width: 10,),
-                        //     Container(
-                        //       width: displayWidth(context) * 0.12,
-                        //       child: TextFormField(
-                        //         controller: _pin4Controller,
-                        //         onChanged: (value) {
-                        //           pin4 = value;
-                        //         },
-                        //         maxLength: 1,
-                        //         decoration: InputDecoration(
-                        //             border: UnderlineInputBorder(),
-                        //             hintText: "*",
-                        //             hintTextDirection: TextDirection.ltr,
-                        //             counterText: ''),
-                        //         textAlign: TextAlign.center,
-                        //       ),
-                        //     ),
-                        //     Container(
-                        //       width: displayWidth(context) * 0.12,
-                        //       child: TextFormField(
-                        //         controller: _pin5Controller,
-                        //         onChanged: (value) {
-                        //           pin5 = value;
-                        //         },
-                        //         maxLength: 1,
-                        //         decoration: InputDecoration(
-                        //             border: UnderlineInputBorder(),
-                        //             hintText: "*",
-                        //             hintTextDirection: TextDirection.ltr,
-                        //             counterText: ''),
-                        //         textAlign: TextAlign.center,
-                        //       ),
-                        //     ),
-                        //     Container(
-                        //       width: displayWidth(context) * 0.12,
-                        //       child: TextFormField(
-                        //         controller: _pin6Controller,
-                        //         onChanged: (value) {
-                        //           pin6 = value;
-                        //         },
-                        //         maxLength: 1,
-                        //         decoration: InputDecoration(
-                        //             border: UnderlineInputBorder(),
-                        //             hintText: "*",
-                        //             hintTextDirection: TextDirection.ltr,
-                        //             counterText: ''),
-                        //         textAlign: TextAlign.center,
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
 
 //remove comment
                         // Padding(

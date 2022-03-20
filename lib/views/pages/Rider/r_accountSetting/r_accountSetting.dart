@@ -1,4 +1,5 @@
 import 'package:customerapp/views/pages/HomeScreen/HomeScreen.dart';
+import 'package:customerapp/views/pages/Rider/r_accountSetting/rr_update_driver.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:customerapp/Theme/Theme.dart';
@@ -42,7 +43,7 @@ class _RAccountSettingState extends State<RAccountSetting> {
         MediaQuery.of(context).size.height - kBottomNavigationBarHeight;
     return Scaffold(
       body: Container(
-        height: displayHeight(context) - kBottomNavigationBarHeight,
+        // height: displayHeight(context) - kBottomNavigationBarHeight,
         width: displayWidth(context),
         child: SingleChildScrollView(
           child: Column(
@@ -75,6 +76,7 @@ class _RAccountSettingState extends State<RAccountSetting> {
                       left: 15.0,
                       // right: 15.0,
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           GestureDetector(
                             onTap: () {
@@ -91,7 +93,8 @@ class _RAccountSettingState extends State<RAccountSetting> {
                                 }),
                             // child: Image.asset("assets/r_assets/images/Vector.png")
                           ),
-                          SizedBox(width: 50),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.15),
                           Text("Account Information",
                               style: GoogleFonts.ubuntu(
                                   textStyle: TextStyle(
@@ -99,7 +102,30 @@ class _RAccountSettingState extends State<RAccountSetting> {
                                       fontWeight: FontWeight.w500,
                                       color:
                                           Color.fromRGBO(255, 255, 255, 1)))),
-                          // Image.asset("assets/r_assets/images/foodimages/Delete1.png"),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.15),
+                          GestureDetector(
+                            onTap: () {
+                              ;
+                              // RR_Update_Driver();
+                              // Navigator.pop(context);
+                            },
+                            child: IconButton(
+                                icon: Image.asset(
+                                  "assets/edit.png",
+                                  color: Color.fromRGBO(255, 255, 255, 1),
+                                ),
+                                // icon: Icon(Icons.menu, color: Color(0xFF1f186f),),
+                                onPressed: () {
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              RR_Update_Driver()));
+                                  //   _scaffoldKey.currentState!.openDrawer();
+                                }),
+                            // child: Image.asset("assets/r_assets/images/Vector.png")
+                          ),
                         ],
                       ),
                     ),
