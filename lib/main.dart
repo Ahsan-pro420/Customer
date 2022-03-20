@@ -1,3 +1,4 @@
+import 'package:customerapp/Main2.dart';
 import 'package:customerapp/views/pages/HomeScreen/HomeScreen.dart';
 import 'package:customerapp/views/pages/Rider/calling_screen/rider_calling_screen.dart';
 import 'package:customerapp/views/pages/Rider/r_HomeScreen/r_orders.dart';
@@ -16,11 +17,7 @@ void main() async {
   runApp(MaterialApp(
     title: "Customer App",
     // home: ROrderPage(),
-    home: login == false
-        ? FirstScreen()
-        : pref.getString("userType") == "Customer"
-            ? HomeScreen()
-            : Rider_calling_screen(),
+    home: Main_2(),
     debugShowCheckedModeBanner: false,
   ));
 }

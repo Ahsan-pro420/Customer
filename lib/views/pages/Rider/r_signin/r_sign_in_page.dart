@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:customerapp/views/pages/Rider/r_otp_screen/r_otp_screen.dart';
@@ -9,9 +10,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:customerapp/Theme/Theme.dart';
 import 'package:customerapp/utills/Displaywidth.dart';
 import 'package:customerapp/utills/customtextbutton.dart';
+import 'package:http/http.dart';
 
 bool RR_resendtimer = false;
 var RR_resend_color = Colors.black;
+var login_state;
 
 class R_SignIn extends StatefulWidget {
   const R_SignIn({Key? key}) : super(key: key);
@@ -24,6 +27,43 @@ class _R_SignInState extends State<R_SignIn> {
   TextEditingController RR_controllernumber = TextEditingController();
   String RR_code = '+92';
   String RR_phoneNumber = "";
+
+  // var login_data;
+
+  void Rider_Sign_In_Post_Api(
+    String phone_n,
+  ) async {
+    try {
+      Response response = await post(
+          Uri.parse(
+              'https://persecuted-admissio.000webhostapp.com/restaurant/rider_api/login.php'),
+          body: {"rider_phone": phone_n});
+
+      if (response.statusCode == 200) {
+        login_state = null;
+        var login_data = jsonDecode(response.body.toString());
+        // print(login_data['token']);
+        print('cal rider sign in successfully');
+        print("${login_data} func");
+        setState(() {
+          login_state = login_data;
+          print("${login_state} login state func");
+        });
+      } else {
+        print('failed');
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  void ttimer_resend_first() {
+    setState(() {
+      Timer(Duration(seconds: 35),
+          () => {RR_resendtimer = true, RR_resend_color = Colors.red});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
@@ -227,24 +267,53 @@ class _R_SignInState extends State<R_SignIn> {
                       onPressed: () {
                         setState(() {
                           RR_phoneNumber = RR_code + RR_controllernumber.text;
-                          Timer(
-                              Duration(seconds: 35),
-                              () => {
-                                    RR_resendtimer = true,
-                                    RR_resend_color = Colors.red
-                                  });
+                          // Timer(
+                          //     Duration(seconds: 35),
+                          //     () => {
+                          //           RR_resendtimer = true,
+                          //           RR_resend_color = Colors.red
+                          //         });
                         });
-                        if (RR_controllernumber.text.isNotEmpty) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    R_OTPSCREEN(RR_phoneNumber)),
-                          );
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text("Enter Your Phone Number.")));
-                        }
+                        Rider_Sign_In_Post_Api(RR_phoneNumber);
+                        // print("${login_data}on pressed");
+
+                        Timer(
+                            Duration(seconds: 5),
+                            () => {
+                                  print("${login_state} timer"),
+                                  if (RR_controllernumber.text.isEmpty)
+                                    {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                              content:
+                                                  Text("Enter Phone Number.")))
+                                    }
+                                  else if (login_state.toString() == "0")
+                                    {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                              content: Text(
+                                                  "Register Your Number First")))
+                                    }
+                                  else if (login_state != 0)
+                                    {
+                                      ttimer_resend_first(),
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                R_OTPSCREEN(RR_phoneNumber)),
+                                      )
+                                    }
+                                  else
+                                    {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                              content: Text(
+                                                  "Some thing gone wrong")))
+                                    }
+                                });
+
                         // Navigator.pop(context);
                         // Navigator.push(
                         //   context,

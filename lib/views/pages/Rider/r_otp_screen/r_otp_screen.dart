@@ -4,6 +4,7 @@ import 'package:customerapp/utills/customtextbutton.dart';
 import 'package:customerapp/views/pages/Rider/calling_screen/rider_calling_screen.dart';
 import 'package:customerapp/views/pages/Rider/r_HomeScreen/r_orders.dart';
 import 'package:customerapp/views/pages/Rider/r_signin/r_sign_in_page.dart';
+import 'package:customerapp/views/pages/Rider/rider_earning/rr_earning.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -138,8 +139,7 @@ class _R_OTPSCREENState extends State<R_OTPSCREEN> {
 
               Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => Rider_calling_screen()),
+                  MaterialPageRoute(builder: (context) => RR_Earning()),
                   (route) => false);
             }
           });

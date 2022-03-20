@@ -1,5 +1,11 @@
+import 'dart:async';
+
+import 'package:customerapp/Main2.dart';
+import 'package:customerapp/main.dart';
 import 'package:customerapp/views/pages/HomeScreen/HomeScreen.dart';
 import 'package:customerapp/views/pages/Rider/r_accountSetting/rr_update_driver.dart';
+import 'package:customerapp/views/pages/mainScreen/mainSplashScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:customerapp/Theme/Theme.dart';
@@ -776,7 +782,7 @@ class _RAccountSettingState extends State<RAccountSetting> {
                       ),
                     ),
                     CustomTextButton(
-                      buttonName: 'Change As Customer',
+                      buttonName: 'Log Out',
                       buttonTextStyle: GoogleFonts.ubuntu(
                           textStyle: Constants.loginbuttonstyle()),
                       buttoncolor: Constants.black_light,
@@ -784,15 +790,40 @@ class _RAccountSettingState extends State<RAccountSetting> {
                       width: displayWidth(context) * 0.9,
                       highlightColor: Constants.black_light,
                       onPressed: () {
-                        changeUserType();
-                        Navigator.of(context).pop();
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => HomeScreen()),
-                        );
+                        FirebaseAuth.instance.signOut();
+                        Timer(Duration(seconds: 2), () {
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(builder: (context) => Main_2()),
+                              (route) => false);
+                        }
+
+                            // Navigator.of(context).pop();
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(builder: (context) => HomeScreen()),
+                            );
                       },
                       textStyle: TextStyle(),
-                    ),
+                    )
+                    // CustomTextButton(
+                    //   buttonName: 'Change As Customer',
+                    //   buttonTextStyle: GoogleFonts.ubuntu(
+                    //       textStyle: Constants.loginbuttonstyle()),
+                    //   buttoncolor: Constants.black_light,
+                    //   height: _height * 0.078,
+                    //   width: displayWidth(context) * 0.9,
+                    //   highlightColor: Constants.black_light,
+                    //   onPressed: () {
+                    //     changeUserType();
+                    //     Navigator.of(context).pop();
+                    //     Navigator.push(
+                    //       context,
+                    //       MaterialPageRoute(builder: (context) => HomeScreen()),
+                    //     );
+                    //   },
+                    //   textStyle: TextStyle(),
+                    // ),
                   ],
                 ),
               )

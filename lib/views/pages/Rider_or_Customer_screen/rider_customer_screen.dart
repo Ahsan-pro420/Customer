@@ -32,10 +32,10 @@ class Rider_or_Customer extends StatelessWidget {
                 highlightColor: Constants.black_light,
                 onPressed: () {
                   // Navigator.pop(context);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignIn()),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => SignIn()),
+                  // );
                 },
                 textStyle: TextStyle(),
               ),

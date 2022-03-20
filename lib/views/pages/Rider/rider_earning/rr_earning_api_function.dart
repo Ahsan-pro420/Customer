@@ -10,7 +10,7 @@ List<SalesApiModel> Sales_Api_Data_List = [];
 
 Future<List<SalesApiModel>> get_sales_data_api() async {
   final response = await http.get(Uri.parse(
-      "https://persecuted-admissio.000webhostapp.com/restaurant/restaurant_api/sale.php"));
+      "https://persecuted-admissio.000webhostapp.com/restaurant/rider_api/sale.php"));
   var data = jsonDecode(response.body.toString());
   if (response.statusCode == 200) {
     Sales_Api_Data_List.clear();

@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:customerapp/Theme/Theme.dart';
 import 'package:customerapp/utills/Displaywidth.dart';
@@ -5,6 +8,7 @@ import 'package:customerapp/utills/customtextbutton.dart';
 import 'package:customerapp/views/pages/Rider/r_signin/r_sign_in_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart';
 
 class RR_Sign_up extends StatefulWidget {
   const RR_Sign_up({Key? key}) : super(key: key);
@@ -18,6 +22,29 @@ class _RR_Sign_upState extends State<RR_Sign_up> {
   TextEditingController RRR_Name_controller = TextEditingController();
   String RRR_code = '+92';
   String RRR_phoneNumber = "";
+
+  void Sign_Up_Post_Api(
+    String name,
+    String phone_n,
+  ) async {
+    try {
+      Response response = await post(
+          Uri.parse(
+              'https://persecuted-admissio.000webhostapp.com/restaurant/rider_api/signup.php'),
+          body: {"rider_name": name, "rider_phone": phone_n});
+
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body.toString());
+        print(data['token']);
+        print('Post Succesfull');
+      } else {
+        print('failed');
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var _height = MediaQuery.of(context).size.height;
@@ -189,16 +216,8 @@ class _RR_Sign_upState extends State<RR_Sign_up> {
                               RRR_code + RRR_controllernumber.text;
                         });
                         print(RRR_phoneNumber);
-                        print(RRR_Name_controller);
+                        print(RRR_Name_controller.text);
 
-                        //   RR_phoneNumber = RR_code + RR_controllernumber.text;
-                        //   Timer(
-                        //       Duration(seconds: 35),
-                        //       () => {
-                        //             RR_resendtimer = true,
-                        //             RR_resend_color = Colors.red
-                        //           });
-                        // });
                         if (RRR_Name_controller.text.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(content: Text("Enter Your Name")));
@@ -206,10 +225,24 @@ class _RR_Sign_upState extends State<RR_Sign_up> {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text("Enter Your Phone Number")));
                         } else {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => R_SignIn()),
-                          );
+                          Sign_Up_Post_Api(RRR_Name_controller.text.toString(),
+                              RRR_phoneNumber);
+                          // Sign_Up_Post_Api("ahsan", "+923072647909");
+                          Timer(
+                              Duration(seconds: 2),
+                              () => {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => R_SignIn()),
+                                    )
+                                  });
+                          // Timer(
+                          //     Duration(seconds: 1),
+                          //     () => {
+                          //           RRR_Name_controller.clear(),
+                          //           RRR_controllernumber.clear()
+                          //         });
                         }
 
                         // if (RRR_controllernumber.text.isNotEmpty) {
