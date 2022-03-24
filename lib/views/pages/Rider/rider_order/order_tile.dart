@@ -61,7 +61,7 @@ class _order_tile_classState extends State<order_tile_class> {
 Widget orderr(context, id, price, SubName, Address, quantity, date,
     order_status, status_colorr) {
   return Container(
-    height: displayHeight(context) / 4.1,
+    height: displayHeight(context) / 5,
     width: displayWidth(context),
     margin: EdgeInsets.only(
         left: displayWidth(context) * 0.07,
@@ -73,7 +73,7 @@ Widget orderr(context, id, price, SubName, Address, quantity, date,
     child: Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 15.0, left: 15, right: 15),
+          padding: const EdgeInsets.only(top: 2, left: 15, right: 15),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -85,7 +85,7 @@ Widget orderr(context, id, price, SubName, Address, quantity, date,
                 "$price",
                 style: GoogleFonts.ubuntu(
                     textStyle: TextStyle(
-                        fontSize: 15,
+                        fontSize: MediaQuery.of(context).size.height * 0.025,
                         fontWeight: FontWeight.w400,
                         color: Color.fromRGBO(237, 41, 57, 1))),
               ),
@@ -101,7 +101,7 @@ Widget orderr(context, id, price, SubName, Address, quantity, date,
         ),
         Padding(
           padding:
-              const EdgeInsets.only(top: 5, left: 15, right: 15, bottom: 5),
+              const EdgeInsets.only(top: 2, left: 15, right: 15, bottom: 5),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -120,14 +120,14 @@ Widget orderr(context, id, price, SubName, Address, quantity, date,
             "$Address",
             style: GoogleFonts.ubuntu(
                 textStyle: TextStyle(
-                    fontSize: 14,
+                    fontSize: MediaQuery.of(context).size.height * 0.019,
                     fontWeight: FontWeight.w400,
                     color: Color.fromRGBO(154, 154, 157, 1))),
           ),
         ),
         Container(
           margin: EdgeInsets.only(
-            top: 10,
+            top: 4,
             left: 15,
             right: 15,
           ),
@@ -138,7 +138,7 @@ Widget orderr(context, id, price, SubName, Address, quantity, date,
                 "${date}, 11:00 PM",
                 style: GoogleFonts.ubuntu(
                     textStyle: TextStyle(
-                        fontSize: 15,
+                        fontSize: MediaQuery.of(context).size.height * 0.022,
                         fontWeight: FontWeight.w400,
                         color: Color.fromRGBO(237, 41, 57, 1))),
               )
@@ -148,7 +148,7 @@ Widget orderr(context, id, price, SubName, Address, quantity, date,
         Container(
           //height: 10,
           margin: EdgeInsets.only(
-            top: 5,
+            top: 2,
             left: 15,
             right: 15,
           ),
@@ -165,7 +165,7 @@ Widget orderr(context, id, price, SubName, Address, quantity, date,
                   style: GoogleFonts.ubuntu(
                       textStyle: TextStyle(
                           fontWeight: FontWeight.w500,
-                          fontSize: 12,
+                          fontSize: MediaQuery.of(context).size.height * 0.018,
                           color: Colors.white)),
                 ),
               ),

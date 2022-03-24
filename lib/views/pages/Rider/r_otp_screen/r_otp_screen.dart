@@ -173,7 +173,7 @@ class _R_OTPSCREENState extends State<R_OTPSCREEN> {
         child: Column(
           children: [
             Container(
-              height: displayHeight(context) / 2,
+              height: displayHeight(context) / 2 * 1.05,
               width: displayWidth(context),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -183,13 +183,13 @@ class _R_OTPSCREENState extends State<R_OTPSCREEN> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: displayHeight(context) / 2 * 0.066,
+                    height: displayHeight(context) / 2 * 0.040,
                   ),
                   Image(
                       image:
                           AssetImage("assets/r_assets/images/rider_logo.png")),
                   SizedBox(
-                    height: displayHeight(context) / 2 * 0.066,
+                    height: displayHeight(context) / 2 * 0.050,
                   ),
                   Text(
                     "OTP VERIFICATION",
@@ -206,7 +206,7 @@ class _R_OTPSCREENState extends State<R_OTPSCREEN> {
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(
-                    height: displayHeight(context) / 2 * 0.045,
+                    height: displayHeight(context) / 2 * 0.040,
                   ),
                   Text(
                     "Enter the OTP sent on your phone number",
@@ -227,7 +227,7 @@ class _R_OTPSCREENState extends State<R_OTPSCREEN> {
                 // crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: displayHeight(context) / 2 * 0.12,
+                    height: displayHeight(context) / 2 * 0.08,
                   ),
 // pin put
 
@@ -262,7 +262,7 @@ class _R_OTPSCREENState extends State<R_OTPSCREEN> {
                   ),
                   Container(
                     margin: EdgeInsets.only(
-                        right: 28, left: 20, top: 20, bottom: 20),
+                        right: 28, left: 20, top: 20, bottom: 5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -304,15 +304,29 @@ class _R_OTPSCREENState extends State<R_OTPSCREEN> {
                     height: displayHeight(context) / 2 * 0.3,
                   ),
                   Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.black),
+                    height: MediaQuery.of(context).size.height * 0.07,
+                    width: MediaQuery.of(context).size.width * 0.8,
                     margin: EdgeInsets.only(left: 35, right: 35),
-                    child: CustomTextButton(
-                      buttonName: 'VERIFY OTP',
-                      buttonTextStyle: GoogleFonts.ubuntu(
-                          textStyle: Constants.loginbuttonstyle()),
-                      buttoncolor: Constants.black_light,
-                      height: _height * 0.066,
-                      width: displayWidth(context) * 0.9,
-                      highlightColor: Constants.black_light,
+                    child: TextButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.resolveWith<Color>(
+                                  (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.pressed))
+                              return Colors.grey;
+                            // else if (states.contains(MaterialState.disabled))
+                            //   return Constants.black_light;
+                            return Constants
+                                .black_light; // Use the component's default.
+                          }),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(40),
+                                      side: BorderSide(color: Colors.black)))),
                       onPressed: () async {
                         print(RR_pinf);
 
@@ -346,7 +360,11 @@ class _R_OTPSCREENState extends State<R_OTPSCREEN> {
                         //   MaterialPageRoute(builder: (context) => OrderPage()),
                         // );
                       },
-                      textStyle: TextStyle(),
+                      child: Text(
+                        "VERIFY OTP",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      //textStyle: TextStyle(),
                     ),
                   ),
                 ],
@@ -358,3 +376,10 @@ class _R_OTPSCREENState extends State<R_OTPSCREEN> {
     );
   }
 }
+// buttonName: 'VERIFY OTP',
+                      // buttonTextStyle: GoogleFonts.ubuntu(
+                      //     textStyle: Constants.loginbuttonstyle()),
+                      // buttoncolor: Constants.black_light,
+                      // height: _height * 0.066,
+                      // width: displayWidth(context) * 0.9,
+                      // highlightColor: Constants.black_light,

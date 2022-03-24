@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:customerapp/utills/Displaywidth.dart';
 import 'package:customerapp/views/pages/Rider/rider_earning/rr_earning_api_function.dart';
 import 'package:customerapp/views/pages/Rider/rider_earning/rr_earning_widget.dart';
+import 'package:customerapp/views/widgets/drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -33,9 +34,9 @@ class _RR_EarningState extends State<RR_Earning> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey2,
-      // drawer: Drawer(
-      //   child: Drawer_widget(context),
-      // ),
+      drawer: Drawer(
+        child: drawer_widget(context),
+      ),
       body: Container(
         //height: displayHeight(context) - kBottomNavigationBarHeight,
         width: displayWidth(context),

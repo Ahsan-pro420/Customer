@@ -53,7 +53,7 @@ class _RR_Sign_upState extends State<RR_Sign_up> {
         child: Column(
           children: [
             Container(
-              height: displayHeight(context) / 2,
+              height: displayHeight(context) / 2 * 1.06,
               width: displayWidth(context),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -63,13 +63,13 @@ class _RR_Sign_upState extends State<RR_Sign_up> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: displayHeight(context) / 2 * 0.066,
+                    height: displayHeight(context) / 2 * 0.038,
                   ),
                   Image(
                       image:
                           AssetImage("assets/r_assets/images/rider_logo.png")),
                   SizedBox(
-                    height: displayHeight(context) / 2 * 0.066,
+                    height: displayHeight(context) / 2 * 0.028,
                   ),
                   Text(
                     "Welcome, Let's Start",
@@ -79,7 +79,7 @@ class _RR_Sign_upState extends State<RR_Sign_up> {
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(
-                    height: displayHeight(context) / 2 * 0.066,
+                    height: displayHeight(context) / 2 * 0.038,
                   ),
                   Text(
                     "SignUp",
@@ -92,7 +92,7 @@ class _RR_Sign_upState extends State<RR_Sign_up> {
                     ),
                   ),
                   SizedBox(
-                    height: displayHeight(context) / 2 * 0.033,
+                    height: displayHeight(context) / 2 * 0.015,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -115,7 +115,7 @@ class _RR_Sign_upState extends State<RR_Sign_up> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: displayHeight(context) / 2 * 0.08,
+                    height: displayHeight(context) / 2 * 0.0225,
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 40, right: 40),
@@ -201,15 +201,29 @@ class _RR_Sign_upState extends State<RR_Sign_up> {
                   // ),
 
                   Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.black),
+                    height: MediaQuery.of(context).size.height * 0.07,
+                    width: MediaQuery.of(context).size.width * 0.8,
                     margin: EdgeInsets.only(left: 35, right: 35),
-                    child: CustomTextButton(
-                      buttonName: 'Sign Up',
-                      buttonTextStyle: GoogleFonts.ubuntu(
-                          textStyle: Constants.loginbuttonstyle()),
-                      buttoncolor: Constants.black_light,
-                      height: _height * 0.066,
-                      width: displayWidth(context) * 0.9,
-                      highlightColor: Constants.black_light,
+                    child: TextButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.resolveWith<Color>(
+                                  (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.pressed))
+                              return Colors.white;
+                            // else if (states.contains(MaterialState.disabled))
+                            //   return Constants.black_light;
+                            return Constants
+                                .black_light; // Use the component's default.
+                          }),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(40),
+                                      side: BorderSide(color: Colors.black)))),
                       onPressed: () {
                         setState(() {
                           RRR_phoneNumber =
@@ -237,36 +251,15 @@ class _RR_Sign_upState extends State<RR_Sign_up> {
                                           builder: (context) => R_SignIn()),
                                     )
                                   });
-                          // Timer(
-                          //     Duration(seconds: 1),
-                          //     () => {
-                          //           RRR_Name_controller.clear(),
-                          //           RRR_controllernumber.clear()
-                          //         });
                         }
-
-                        // if (RRR_controllernumber.text.isNotEmpty) {
-                        //   Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) =>
-                        //             R_OTPSCREEN(RR_phoneNumber)),
-                        //   );
-                        // } else {
-                        //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        //       content: Text("Enter Your Phone Number.")));
-                        // }
                       },
-                      // Navigator.pop(context);
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //       builder: (context) => ),
-                      // );
-
-                      textStyle: TextStyle(),
+                      child: Text(
+                        "Sign Up",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
                     ),
-                  ),
+                  )
                 ],
               ),
             ),
@@ -276,3 +269,67 @@ class _RR_Sign_upState extends State<RR_Sign_up> {
     );
   }
 }
+// CustomTextButton(
+                    //   buttonName: 'Sign Up',
+                    //   buttonTextStyle: GoogleFonts.ubuntu(
+                    //       textStyle: Constants.loginbuttonstyle()),
+                    //   buttoncolor: Constants.black_light,
+                    //   height: _height * 0.066,
+                    //   width: displayWidth(context) * 0.9,
+                    //   highlightColor: Constants.black_light,
+                    //   onPressed: () {
+                    //     setState(() {
+                    //       RRR_phoneNumber =
+                    //           RRR_code + RRR_controllernumber.text;
+                    //     });
+                    //     print(RRR_phoneNumber);
+                    //     print(RRR_Name_controller.text);
+
+                    //     if (RRR_Name_controller.text.isEmpty) {
+                    //       ScaffoldMessenger.of(context).showSnackBar(
+                    //           SnackBar(content: Text("Enter Your Name")));
+                    //     } else if (RRR_controllernumber.text.isEmpty) {
+                    //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    //           content: Text("Enter Your Phone Number")));
+                    //     } else {
+                    //       Sign_Up_Post_Api(RRR_Name_controller.text.toString(),
+                    //           RRR_phoneNumber);
+                    //       // Sign_Up_Post_Api("ahsan", "+923072647909");
+                    //       Timer(
+                    //           Duration(seconds: 2),
+                    //           () => {
+                    //                 Navigator.push(
+                    //                   context,
+                    //                   MaterialPageRoute(
+                    //                       builder: (context) => R_SignIn()),
+                    //                 )
+                    //               });
+                    //       // Timer(
+                    //       //     Duration(seconds: 1),
+                    //       //     () => {
+                    //       //           RRR_Name_controller.clear(),
+                    //       //           RRR_controllernumber.clear()
+                    //       //         });
+                    //     }
+
+                    //     // if (RRR_controllernumber.text.isNotEmpty) {
+                    //     //   Navigator.push(
+                    //     //     context,
+                    //     //     MaterialPageRoute(
+                    //     //         builder: (context) =>
+                    //     //             R_OTPSCREEN(RR_phoneNumber)),
+                    //     //   );
+                    //     // } else {
+                    //     //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    //     //       content: Text("Enter Your Phone Number.")));
+                    //     // }
+                    //   },
+                    //   // Navigator.pop(context);
+                    //   // Navigator.push(
+                    //   //   context,
+                    //   //   MaterialPageRoute(
+                    //   //       builder: (context) => ),
+                    //   // );
+
+                    //   textStyle: TextStyle(),
+                    // ),

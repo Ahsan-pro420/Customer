@@ -5,6 +5,7 @@ import 'package:customerapp/main.dart';
 import 'package:customerapp/views/pages/HomeScreen/HomeScreen.dart';
 import 'package:customerapp/views/pages/Rider/r_accountSetting/rr_update_driver.dart';
 import 'package:customerapp/views/pages/mainScreen/mainSplashScreen.dart';
+import 'package:customerapp/views/widgets/drawer_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -43,11 +44,14 @@ class _RAccountSettingState extends State<RAccountSetting> {
     });
   }
 
+  GlobalKey<ScaffoldState> _scaffoldKey3 = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     final _height =
         MediaQuery.of(context).size.height - kBottomNavigationBarHeight;
     return Scaffold(
+      key: _scaffoldKey3,
+      drawer: drawer_widget(context),
       body: Container(
         // height: displayHeight(context) - kBottomNavigationBarHeight,
         width: displayWidth(context),
@@ -95,7 +99,7 @@ class _RAccountSettingState extends State<RAccountSetting> {
                                 ),
                                 // icon: Icon(Icons.menu, color: Color(0xFF1f186f),),
                                 onPressed: () {
-                                  //   _scaffoldKey.currentState!.openDrawer();
+                                  _scaffoldKey3.currentState!.openDrawer();
                                 }),
                             // child: Image.asset("assets/r_assets/images/Vector.png")
                           ),
@@ -762,68 +766,79 @@ class _RAccountSettingState extends State<RAccountSetting> {
                       ),
                     ),
                     Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.black),
+                      height: MediaQuery.of(context).size.height * 0.07,
+                      width: MediaQuery.of(context).size.width * 0.9,
                       margin: EdgeInsets.only(left: 35, right: 35, bottom: 20),
-                      child: CustomTextButton(
-                        buttonName: 'Save Updates',
-                        buttonTextStyle: GoogleFonts.ubuntu(
-                            textStyle: Constants.loginbuttonstyle()),
-                        buttoncolor: Constants.black_light,
-                        height: _height * 0.07,
-                        width: displayWidth(context) * 0.9,
-                        highlightColor: Constants.black_light,
-                        onPressed: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //       builder: (context) => OTPSCREEN()),
-                          // );
-                        },
-                        textStyle: TextStyle(),
+                      child: TextButton(
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith<Color>(
+                                    (Set<MaterialState> states) {
+                              if (states.contains(MaterialState.pressed))
+                                return Colors.grey;
+                              // else if (states.contains(MaterialState.disabled))
+                              //   return Constants.black_light;
+                              return Constants
+                                  .black_light; // Use the component's default.
+                            }),
+                            shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(40),
+                                    side: BorderSide(color: Colors.black)))),
+                        onPressed: () {},
+                        child: Text(
+                          "Save Updates",
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
-                    CustomTextButton(
-                      buttonName: 'Log Out',
-                      buttonTextStyle: GoogleFonts.ubuntu(
-                          textStyle: Constants.loginbuttonstyle()),
-                      buttoncolor: Constants.black_light,
-                      height: _height * 0.078,
-                      width: displayWidth(context) * 0.9,
-                      highlightColor: Constants.black_light,
-                      onPressed: () {
-                        FirebaseAuth.instance.signOut();
-                        Timer(Duration(seconds: 2), () {
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(builder: (context) => Main_2()),
-                              (route) => false);
-                        }
-
-                            // Navigator.of(context).pop();
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(builder: (context) => HomeScreen()),
-                            );
-                      },
-                      textStyle: TextStyle(),
-                    )
-                    // CustomTextButton(
-                    //   buttonName: 'Change As Customer',
-                    //   buttonTextStyle: GoogleFonts.ubuntu(
-                    //       textStyle: Constants.loginbuttonstyle()),
-                    //   buttoncolor: Constants.black_light,
-                    //   height: _height * 0.078,
-                    //   width: displayWidth(context) * 0.9,
-                    //   highlightColor: Constants.black_light,
-                    //   onPressed: () {
-                    //     changeUserType();
-                    //     Navigator.of(context).pop();
-                    //     Navigator.push(
-                    //       context,
-                    //       MaterialPageRoute(builder: (context) => HomeScreen()),
-                    //     );
-                    //   },
-                    //   textStyle: TextStyle(),
-                    // ),
+                    Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: Colors.black),
+                        height: MediaQuery.of(context).size.height * 0.07,
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        margin:
+                            EdgeInsets.only(left: 35, right: 35, bottom: 20),
+                        child: TextButton(
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.resolveWith<Color>(
+                                      (Set<MaterialState> states) {
+                                if (states.contains(MaterialState.pressed))
+                                  return Colors.grey;
+                                // else if (states.contains(MaterialState.disabled))
+                                //   return Constants.black_light;
+                                return Constants
+                                    .black_light; // Use the component's default.
+                              }),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(40),
+                                      side: BorderSide(color: Colors.black)))),
+                          onPressed: () {
+                            FirebaseAuth.instance.signOut();
+                            Timer(Duration(seconds: 2), () {
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Main_2()),
+                                  (route) => false);
+                            });
+                          },
+                          child: Text(
+                            "Log Out",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ))
                   ],
                 ),
               )
@@ -834,3 +849,63 @@ class _RAccountSettingState extends State<RAccountSetting> {
     );
   }
 }
+// CustomTextButton(
+                        //   buttonName: 'Save Updates',
+                        //   buttonTextStyle: GoogleFonts.ubuntu(
+                        //       textStyle: Constants.loginbuttonstyle()),
+                        //   buttoncolor: Constants.black_light,
+                        //   height: _height * 0.07,
+                        //   width: displayWidth(context) * 0.9,
+                        //   highlightColor: Constants.black_light,
+                        //   onPressed: () {
+                        //     // Navigator.push(
+                        //     //   context,
+                        //     //   MaterialPageRoute(
+                        //     //       builder: (context) => OTPSCREEN()),
+                        //     // );
+                        //   },
+                        //   textStyle: TextStyle(),
+
+                         // CustomTextButton(
+                          //   buttonName: 'Log Out',
+                          //   buttonTextStyle: GoogleFonts.ubuntu(
+                          //       textStyle: Constants.loginbuttonstyle()),
+                          //   buttoncolor: Constants.black_light,
+                          //   height: _height * 0.078,
+                          //   width: displayWidth(context) * 0.9,
+                          //   highlightColor: Constants.black_light,
+                          //   onPressed: () {
+                          //     FirebaseAuth.instance.signOut();
+                          //     Timer(Duration(seconds: 2), () {
+                          //       Navigator.pushAndRemoveUntil(
+                          //           context,
+                          //           MaterialPageRoute(builder: (context) => Main_2()),
+                          //           (route) => false);
+                          //     }
+
+                          //         // Navigator.of(context).pop();
+                          //         // Navigator.push(
+                          //         //   context,
+                          //         //   MaterialPageRoute(builder: (context) => HomeScreen()),
+                          //         );
+                          //   },
+                          //   textStyle: TextStyle(),
+                          // )
+                          // CustomTextButton(
+                          //   buttonName: 'Change As Customer',
+                          //   buttonTextStyle: GoogleFonts.ubuntu(
+                          //       textStyle: Constants.loginbuttonstyle()),
+                          //   buttoncolor: Constants.black_light,
+                          //   height: _height * 0.078,
+                          //   width: displayWidth(context) * 0.9,
+                          //   highlightColor: Constants.black_light,
+                          //   onPressed: () {
+                          //     changeUserType();
+                          //     Navigator.of(context).pop();
+                          //     Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(builder: (context) => HomeScreen()),
+                          //     );
+                          //   },
+                          //   textStyle: TextStyle(),
+                          // ),

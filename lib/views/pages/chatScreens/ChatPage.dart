@@ -1,3 +1,4 @@
+import 'package:customerapp/views/widgets/drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:customerapp/Models/ChatModels/UserchatModel.dart';
@@ -12,6 +13,8 @@ class ChatPage extends StatefulWidget {
   @override
   _ChatPageState createState() => _ChatPageState();
 }
+
+GlobalKey<ScaffoldState> _scaffoldKey4 = GlobalKey<ScaffoldState>();
 
 class _ChatPageState extends State<ChatPage> {
   List<ChatUsers> chatUsers = [
@@ -60,6 +63,8 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey4,
+      drawer: drawer_widget(context),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(
@@ -111,7 +116,12 @@ class _ChatPageState extends State<ChatPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Image.asset("assets/r_assets/images/Menu.png"),
+                  IconButton(
+                    onPressed: () {
+                      _scaffoldKey4.currentState!.openDrawer();
+                    },
+                    icon: Image.asset("assets/r_assets/images/Menu.png"),
+                  ),
                   SizedBox(
                     width: displayWidth(context) * 0.30,
                   ),

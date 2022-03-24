@@ -3,6 +3,7 @@ import 'package:customerapp/utills/Displaywidth.dart';
 import 'package:customerapp/views/pages/Rider/rider_order/api_call_func.dart';
 import 'package:customerapp/views/pages/Rider/rider_order/rr_orderHistory.dart';
 import 'package:customerapp/views/pages/Rider/rider_order/order_tile.dart';
+import 'package:customerapp/views/widgets/drawer_widget.dart';
 import 'package:customerapp/views/widgets/r_tabButton.dart';
 import 'package:flutter/material.dart';
 
@@ -50,9 +51,9 @@ class _RROrderPageState extends State<RROrderPage>
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      // drawer: Drawer(
-      //   child: Drawer_widget(context),
-      // ),
+      drawer: Drawer(
+        child: drawer_widget(context),
+      ),
       body: Container(
         width: MediaQuery.of(context).size.width * 1,
         // height: 1300,
@@ -150,7 +151,7 @@ class _RROrderPageState extends State<RROrderPage>
                   Container(
                     // width: MediaQuery.of(context).size.width * 0.9,
                     // color: Colors.amber,
-                    margin: EdgeInsets.only(top: 5),
+                    margin: EdgeInsets.only(top: 3),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [

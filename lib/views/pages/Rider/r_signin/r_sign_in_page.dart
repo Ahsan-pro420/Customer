@@ -72,7 +72,7 @@ class _R_SignInState extends State<R_SignIn> {
         child: Column(
           children: [
             Container(
-              height: displayHeight(context) / 2,
+              height: displayHeight(context) / 2 * 1.07,
               width: displayWidth(context),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -82,13 +82,13 @@ class _R_SignInState extends State<R_SignIn> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: displayHeight(context) / 2 * 0.066,
+                    height: displayHeight(context) / 2 * 0.028,
                   ),
                   Image(
                       image:
                           AssetImage("assets/r_assets/images/rider_logo.png")),
                   SizedBox(
-                    height: displayHeight(context) / 2 * 0.066,
+                    height: displayHeight(context) / 2 * 0.038,
                   ),
                   Text(
                     "Welcome, Let's Start",
@@ -98,20 +98,20 @@ class _R_SignInState extends State<R_SignIn> {
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(
-                    height: displayHeight(context) / 2 * 0.066,
+                    height: displayHeight(context) / 2 * 0.042,
                   ),
                   Text(
                     "login",
                     style: GoogleFonts.ubuntu(
                       textStyle: TextStyle(
                         fontWeight: FontWeight.w500,
-                        fontSize: 25,
+                        fontSize: MediaQuery.of(context).size.height * 0.030,
                         color: Colors.red,
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: displayHeight(context) / 2 * 0.033,
+                    height: displayHeight(context) / 2 * 0.015,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -154,7 +154,7 @@ class _R_SignInState extends State<R_SignIn> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: displayHeight(context) / 2 * 0.08,
+                    height: displayHeight(context) / 2 * 0.06,
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 35, right: 35),
@@ -168,7 +168,9 @@ class _R_SignInState extends State<R_SignIn> {
                             textAlign: TextAlign.start,
                             style: GoogleFonts.ubuntu(
                                 textStyle: TextStyle(
-                                    fontSize: 15,
+                                    fontSize:
+                                        MediaQuery.of(context).size.height *
+                                            0.015,
                                     fontWeight: FontWeight.w400,
                                     color: Colors.black.withOpacity(0.4))),
                           ),
@@ -254,29 +256,36 @@ class _R_SignInState extends State<R_SignIn> {
                   //   ),
                   //   ),
                   // ):
+
                   Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.black),
+                    height: MediaQuery.of(context).size.height * 0.07,
+                    width: MediaQuery.of(context).size.width * 0.8,
                     margin: EdgeInsets.only(left: 35, right: 35),
-                    child: CustomTextButton(
-                      buttonName: 'SEND OTP',
-                      buttonTextStyle: GoogleFonts.ubuntu(
-                          textStyle: Constants.loginbuttonstyle()),
-                      buttoncolor: Constants.black_light,
-                      height: _height * 0.066,
-                      width: displayWidth(context) * 0.9,
-                      highlightColor: Constants.black_light,
+                    child: TextButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.resolveWith<Color>(
+                                  (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.pressed))
+                              return Colors.white;
+                            // else if (states.contains(MaterialState.disabled))
+                            //   return Constants.black_light;
+                            return Constants
+                                .black_light; // Use the component's default.
+                          }),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(40),
+                                      side: BorderSide(color: Colors.black)))),
                       onPressed: () {
                         setState(() {
                           RR_phoneNumber = RR_code + RR_controllernumber.text;
-                          // Timer(
-                          //     Duration(seconds: 35),
-                          //     () => {
-                          //           RR_resendtimer = true,
-                          //           RR_resend_color = Colors.red
-                          //         });
                         });
                         Rider_Sign_In_Post_Api(RR_phoneNumber);
-                        // print("${login_data}on pressed");
-
                         Timer(
                             Duration(seconds: 5),
                             () => {
@@ -313,15 +322,15 @@ class _R_SignInState extends State<R_SignIn> {
                                                   "Some thing gone wrong")))
                                     }
                                 });
-
-                        // Navigator.pop(context);
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //       builder: (context) => ),
-                        // );
                       },
-                      textStyle: TextStyle(),
+                      child: Text(
+                        "Send OTP ",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
+                      ),
+                      //                      // textStyle: TextStyle(),
                     ),
                   ),
                 ],
@@ -333,3 +342,65 @@ class _R_SignInState extends State<R_SignIn> {
     );
   }
 }
+//Container(
+                      //   margin: EdgeInsets.only(left: 35, right: 35),
+                      //   child: CustomTextButton(
+                      //     buttonName: 'SEND OTP',
+                      //     buttonTextStyle: GoogleFonts.ubuntu(
+                      //         textStyle: Constants.loginbuttonstyle()),
+                      //     buttoncolor: Constants.black_light,
+                      //     height: _height * 0.066,
+                      //     width: displayWidth(context) * 0.9,
+                      //     highlightColor: Constants.black_light,
+                      //     onPressed: () {
+                      //       setState(() {
+                      //         RR_phoneNumber = RR_code + RR_controllernumber.text;
+                      //         // Timer(
+                      //         //     Duration(seconds: 35),
+                      //         //     () => {
+                      //         //           RR_resendtimer = true,
+                      //         //           RR_resend_color = Colors.red
+                      //         //         });
+                      //       });
+                      //       Rider_Sign_In_Post_Api(RR_phoneNumber);
+                      //       // print("${login_data}on pressed");
+
+                      //       Timer(
+                      //           Duration(seconds: 5),
+                      //           () => {
+                      //                 print("${login_state} timer"),
+                      //                 if (RR_controllernumber.text.isEmpty)
+                      //                   {
+                      //                     ScaffoldMessenger.of(context)
+                      //                         .showSnackBar(SnackBar(
+                      //                             content:
+                      //                                 Text("Enter Phone Number.")))
+                      //                   }
+                      //                 else if (login_state.toString() == "0")
+                      //                   {
+                      //                     ScaffoldMessenger.of(context)
+                      //                         .showSnackBar(SnackBar(
+                      //                             content: Text(
+                      //                                 "Register Your Number First")))
+                      //                   }
+                      //                 else if (login_state != 0)
+                      //                   {
+                      //                     ttimer_resend_first(),
+                      //                     Navigator.push(
+                      //                       context,
+                      //                       MaterialPageRoute(
+                      //                           builder: (context) =>
+                      //                               R_OTPSCREEN(RR_phoneNumber)),
+                      //                     )
+                      //                   }
+                      //                 else
+                      //                   {
+                      //                     ScaffoldMessenger.of(context)
+                      //                         .showSnackBar(SnackBar(
+                      //                             content: Text(
+                      //                                 "Some thing gone wrong")))
+                      //                   }
+                      //               });
+
+                      //     },
+ 
